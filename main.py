@@ -4,14 +4,27 @@
 #均为绝对路径
 
 import sys
+import jieba
 
 a = sys.argv
 
 def load(a):
     f = open(r'%s' %a , mode='r',encoding='utf-8')
-    l = f.read()
+    text = f.read()
     f.close()
-    return l
+    return jieba.cut(text)
 
-p = load(a[1])
-print(p)
+def jaccard_similarity(A, B):# 求集合 A 和集合 B 的交集
+    nominator = A.intersection(B)
+    # 求集合 A 和集合 B 的并集
+    denominator = A.union(B)
+    # 计算比率
+    similarity = len(nominator)/len(denominator)
+    return similarity
+
+orig = load(a[1])
+check = load(a[2])
+orig_set = set(orig)
+check_set = set(check)
+similarity = jaccard_similarity(orig_set, check_set)
+print(similarity)
