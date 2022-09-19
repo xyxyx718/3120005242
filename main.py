@@ -12,13 +12,13 @@ from readandwrite import load, output
 a = sys.argv
 # 异常处理
 # 参数不足
-if len(a)<4:
+if len(a) < 4:
     print('缺少参数！')
     print('格式(均为绝对路径)：\npython main.py [原文文件] [抄袭版论文的文件] [答案文件]')
     exit(0)
 # 文件不存在
 if not os.path.exists(a[1]):
-    print('原文文件不存在！')
+    print('原文文件不存在！\n')
     exit(0)
 if not os.path.exists(a[2]):
     print('抄袭版论文的文件不存在！')
@@ -29,7 +29,7 @@ check = load(a[2])
 
 # 异常处理：空文件
 if orig == 0 or check == 0:
-    print('文件内容为空或无意义！')
+    print('文件为空或无意义！')
     exit(0)
 
 orig_dict = dict()
@@ -50,8 +50,8 @@ for item in check:
         check_dict[item] = 1
         orig_dict[item] = 0
 
-# 将字典的值转换为列表
+# 将字典的值转换为列表，导入到相似度计算的函数中
 ans = similarity(list(orig_dict.values()), list(check_dict.values()))
 
-#print(ans)
+# print(ans)
 output(a[3], ans)
