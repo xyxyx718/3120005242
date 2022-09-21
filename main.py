@@ -7,6 +7,8 @@
 # -1：缺少参数
 # -2：文件不存在
 # -3：文件为空或无意义
+# -4：文件编码错误
+# -5：文件写入失败
 # 0~1：相似度
 
 
@@ -40,6 +42,10 @@ def main(a):
     if orig == 0 or check == 0:
         print('文件为空或无意义！')
         return -3
+    
+    if orig == -1 or check == -1:
+        print('请将文件另存为UTF-8或GBK编码！')
+        return -4
 
     orig_dict = dict()
     check_dict = dict()
@@ -50,8 +56,10 @@ def main(a):
     ans = similarity(list(orig_dict.values()), list(check_dict.values()))
 
     # print(ans)
-    output(a[3], ans)
-    print('相似度为：%.2f，结果已保存至%s' % (ans, a[3]))
+    if(output(a[3], ans) == -1):
+        print('相似度为：%.2f\n结果保存失败，请检查结果文件是否为只读！' % ans)
+        return -5
+    print('相似度为：%.2f，结果已保存至\"%s\"' % (ans, a[3]))
     return ans
 
 

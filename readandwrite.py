@@ -1,11 +1,26 @@
+# -*- coding: utf-8 -*-
+
 import re
 import jieba_fast as jieba
 
+# load(path)：读取文件，返回分词结果
+# 0：文件为空
+# -1：文件编码错误
+# output(path, ans)：将结果输出到文件
+# 0：成功
+# -1：写入失败
+
 def load(path):
     # 读取文件
-    f = open(r'%s' % path, mode='r', encoding='utf-8')
-    text = f.read()
-    f.close()
+    try:
+        with open(r'%s' % path, mode='r', encoding='utf-8') as f:
+            text = f.read()
+    except:
+        try:
+            with open(r'%s' % path, mode='r', encoding='gbk') as f:
+                text = f.read()
+        except:
+            return -1
     
     # 清理html格式、一部分标点符号、单独占据一行的无空格英文/符号字符串、中文中的空格
     text = re.sub(r'<.*?>', '', text, flags=re.S)
@@ -25,6 +40,9 @@ def load(path):
 
 # 格式化并输出结果
 def output(path, ans):
-    f = open(r'%s' % path, mode='w', encoding='utf-8')
-    f.write('%.2f' % ans)
-    f.close()
+    try:
+        with open(r'%s' % path, mode='w', encoding='utf-8') as f:
+            f.write('%.2f' % ans)
+    except:
+        return -1
+        

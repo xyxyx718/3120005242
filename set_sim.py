@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 def jaccard_similarity(A: set, B: set):
     # 求集合 A 和集合 B 的交集
     nominator = A.intersection(B)
