@@ -16,5 +16,5 @@ def similarity(a_list: list, b_list: list):
     # 计算向量距离
     dis = np.linalg.norm(a_array - b_array)
     # 处理后的角度和距离的加权平均
-    sim = (1-arccos_oc/90)*0.5 + (1-dis/(a_norm+b_norm))*0.5
+    sim = (1-arccos_oc/90)*0.8 + (1-dis/(a_norm+b_norm))*0.2
     return sim
