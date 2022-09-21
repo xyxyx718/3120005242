@@ -3,11 +3,11 @@
 # 格式：python main.py [原文文件] [抄袭版论文的文件] [答案文件]
 # 均为绝对路径
 
-#返回参数
-#-1：缺少参数
-#-2：文件不存在
-#-3：文件为空或无意义
-#0~1：相似度
+# 返回参数
+# -1：缺少参数
+# -2：文件不存在
+# -3：文件为空或无意义
+# 0~1：相似度
 
 
 import os
@@ -16,6 +16,7 @@ import sys
 from vectoer_sim import similarity
 from readandwrite import load, output
 from generate_dict import generate_dict
+
 
 def main(a):
     # 异常处理
@@ -50,7 +51,9 @@ def main(a):
 
     # print(ans)
     output(a[3], ans)
+    print('相似度为：%.2f，结果已保存至%s' % (ans, a[3]))
     return ans
+
 
 if __name__ == '__main__':
     main(sys.argv)

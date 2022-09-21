@@ -1,4 +1,5 @@
 jieba==0.42.1
+jieba_fast==0.53
 numpy==1.23.3
 attrs==22.1.0
 colorama==0.4.5

@@ -1,5 +1,5 @@
 import re
-import jieba
+import jieba_fast as jieba
 
 def load(path):
     # 读取文件
