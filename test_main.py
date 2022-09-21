@@ -46,6 +46,9 @@ def test_main_copy():
     assert main(['main.py', '测试样例\正常.txt', '测试样例\正常.txt', 'ans.txt']) > 0.99
 
 
-def test_main():
+def test_main_sim():
     assert abs(
         main(['main.py', '测试样例\正常.txt', '测试样例\抄袭.txt', 'ans.txt']) - 0.81) < 0.05
+
+def test_main_diff():
+    assert main(['main.py', '测试样例\正常.txt', '测试样例\没抄袭.txt', 'ans.txt']) < 0.4
